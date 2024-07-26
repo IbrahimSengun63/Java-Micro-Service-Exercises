@@ -1,0 +1,32 @@
+# Discovery server port
+ds:
+  port: 8888
+
+# Postgresql port
+ps:
+  port: 5432
+
+spring:
+  datasource:
+    url: jdbc:postgresql://postgres:${ps.port}/microservices.order-service
+    username: postgres
+    password: 12345
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+
+# order service docker port
+server:
+  port: 8083
+
+# Discovery server client registiration
+eureka:
+  client:
+    serviceUrl:
+      # This field port is customizable, if it changed eureka routes must be changed as well.
+      defaultZone: http://discovery-server:${ds.port}/eureka/
+    registerWithEureka: true
+    fetchRegistry: true

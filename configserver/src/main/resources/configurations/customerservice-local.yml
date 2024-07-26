@@ -1,0 +1,31 @@
+# Discovery server port
+ds:
+  port: 8888
+
+#Postgresql port
+ps:
+  port: 5432
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:${ps.port}/microservices.customer-service
+    username: postgres
+    password: 12345
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+
+# Customer service local port
+server:
+  port: 8081
+
+# Discovery server client configuration
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:${ds.port}/eureka/
+    registerWithEureka: true
+    fetchRegistry: true

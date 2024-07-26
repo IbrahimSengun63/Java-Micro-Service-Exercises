@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: configserver
+  cloud:
+    config:
+      server:
+        native:
+          searchLocations: "classpath:/configurations, classpath:/configurations/{application}, classpath:/configurations/{application}/{profile}"
+  profiles:
+    active: native
+
+
+configUrl: http://localhost:8079
+server:
+  port: 8079
