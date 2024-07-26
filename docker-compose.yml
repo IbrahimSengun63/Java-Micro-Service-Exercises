@@ -20,6 +20,8 @@ services:
     networks:
       - microservices
     restart: on-failure
+
+
   discovery-server:
     build: ./discoveryserver
     ports:

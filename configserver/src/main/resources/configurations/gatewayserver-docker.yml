@@ -10,15 +10,15 @@ spring:
           - id: customer-service
             uri: lb://customer-service
             predicates:
-              - Path=/api/v1/customer-service/**
+              - Path=/api/v1/customer-service**
           - id: product-service
             uri: lb://product-service
             predicates:
-              - Path=/api/v1/product-service/**
+              - Path=/api/v1/product-service**
           - id: order-service
             uri: lb://order-service
             predicates:
-              - Path=/api/v1/order-service/**
+              - Path=/api/v1/order-service**
           - id: eureka
             uri: http://discovery-server:${ds.port}
             predicates:
