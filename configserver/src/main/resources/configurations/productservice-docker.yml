@@ -8,7 +8,7 @@ ps:
 
 spring:
   datasource:
-    url: jdbc:postgresql://postgres:${ps.port}/microservices.product-service
+    url: jdbc:postgresql://postgres:${ps.port}/microservices-exercises
     username: postgres
     password: 12345
   jpa:

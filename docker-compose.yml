@@ -1,0 +1,107 @@
+services:
+  postgres:
+    image: postgres
+    ports:
+      - "5433:5432"
+    environment:
+      - POSTGRES_PASSWORD=12345
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=microservices-exercises
+    volumes:
+      - postgresql-volume:/var/lib/postgresql/data
+    networks:
+      - microservices
+
+
+  config-server:
+    build: ./configserver
+    ports:
+      - "8079:8079"
+    networks:
+      - microservices
+    restart: on-failure
+  discovery-server:
+    build: ./discoveryserver
+    ports:
+      - "8888:8888"
+    networks:
+      - microservices
+    depends_on:
+      - config-server
+    environment:
+      - SPRING_CLOUD_CONFIG_PROFILE=docker
+      - CONFIGURL=http://config-server:8079
+    restart: on-failure
+
+
+  gateway-server:
+    build: ./gatewayserver
+    ports:
+      - "8080:8080"
+    restart: on-failure
+    depends_on:
+      - config-server
+      - discovery-server
+    environment:
+      - SPRING_CLOUD_CONFIG_PROFILE=docker
+      - CONFIGURL=http://config-server:8079
+    networks:
+      - microservices
+
+
+  customer-service:
+    build: ./customerservice
+    ports:
+      - "8081:8081"
+    restart: on-failure
+    depends_on:
+      - config-server
+      - discovery-server
+      - gateway-server
+    environment:
+      - SPRING_CLOUD_CONFIG_PROFILE=docker
+      - CONFIGURL=http://config-server:8079
+    networks:
+      - microservices
+
+
+  product-service:
+    build: ./productservice
+    ports:
+      - "8082:8082"
+    restart: on-failure
+    depends_on:
+      - config-server
+      - discovery-server
+      - gateway-server
+    environment:
+      - SPRING_CLOUD_CONFIG_PROFILE=docker
+      - CONFIGURL=http://config-server:8079
+    networks:
+      - microservices
+
+
+  order-service:
+    build: ./orderservice
+    ports:
+      - "8083:8083"
+    restart: on-failure
+    depends_on:
+      - config-server
+      - discovery-server
+      - gateway-server
+    environment:
+      - SPRING_CLOUD_CONFIG_PROFILE=docker
+      - CONFIGURL=http://config-server:8079
+    networks:
+      - microservices
+
+
+volumes:
+  postgresql-volume:
+    name: postgresql-microservices-exercises
+
+
+networks:
+  microservices:
+    driver: bridge
