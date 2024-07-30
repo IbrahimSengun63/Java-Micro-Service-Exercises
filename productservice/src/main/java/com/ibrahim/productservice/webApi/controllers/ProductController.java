@@ -38,8 +38,8 @@ public class ProductController {
         return ResponseEntity.ok().body(responseGetProductByName);
     }
 
-    @GetMapping("/GetProductById")
-    public ResponseEntity<ResponseGetProductById> getProductById(@RequestParam int id) {
+    @GetMapping("/GetProductById/{id}")
+    public ResponseEntity<ResponseGetProductById> getProductById(@PathVariable int id) {
         RequestGetProductById requestGetProductById = new RequestGetProductById();
         requestGetProductById.setId(id);
         ResponseGetProductById responseGetProductById = this.productService.getProductById(requestGetProductById);

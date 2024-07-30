@@ -7,6 +7,7 @@ import com.ibrahim.productservice.dtos.requests.RequestUpdateProduct;
 import com.ibrahim.productservice.dtos.responses.*;
 import com.ibrahim.productservice.entities.Product;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +23,9 @@ public interface ProductMapper {
     Product requestUpdateProductToProduct(RequestUpdateProduct requestUpdateProduct);
     ResponseUpdateProduct productToResponseUpdateProduct(Product product);
 
+    @Mapping(source = "id",target = "id")
     Product requestGetProductByIdToProduct(RequestGetProductById requestGetProductById);
+    @Mapping(source = "id",target = "id")
     ResponseGetProductById productToResponseGetProductById(Product product);
 
     Product requestGetProductByNameToProduct(RequestGetProductByName requestGetProductByName);
