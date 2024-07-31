@@ -1,4 +1,4 @@
-package com.ibrahim.productservice.dtos.requests;
+package com.ibrahim.common.dtos.productservice.requests;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

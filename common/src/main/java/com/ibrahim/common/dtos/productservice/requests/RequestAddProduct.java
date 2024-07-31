@@ -1,4 +1,4 @@
-package com.ibrahim.orderservice.dtos.responses;
+package com.ibrahim.common.dtos.productservice.requests;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,8 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ResponseGetProduct {
-    private int id;
+public class RequestAddProduct {
     private String name;
     private int stock;
 }

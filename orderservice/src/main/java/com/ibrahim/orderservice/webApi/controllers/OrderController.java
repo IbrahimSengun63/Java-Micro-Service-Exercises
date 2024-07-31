@@ -1,8 +1,11 @@
 package com.ibrahim.orderservice.webApi.controllers;
 
-import com.ibrahim.orderservice.dtos.responses.ResponseGetProduct;
-import com.ibrahim.orderservice.entities.Product;
-import com.ibrahim.orderservice.webApi.clients.ProductServiceClient;
+import com.ibrahim.common.dtos.orderservice.requests.*;
+import com.ibrahim.common.dtos.orderservice.responses.*;
+import com.ibrahim.common.dtos.productservice.requests.*;
+import com.ibrahim.common.dtos.productservice.responses.*;
+import com.ibrahim.orderservice.callers.ProductCallerService;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,14 +14,20 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1/order-service")
 @RequiredArgsConstructor
 public class OrderController {
-    private final ProductServiceClient productServiceClient;
+
+    private final ProductCallerService productCallerService;
 
     @PostMapping("/add")
-    public void testFeign(@RequestParam int productId) {
+    public ResponseEntity<ResponseAddProductToProductService> testFeign(@RequestBody RequestAddProductFromOrderService requestAddProductFromOrderService) {
+        ResponseAddProductToProductService responseAddProductToProductService = this.productCallerService.addProduct(requestAddProductFromOrderService);
+        return ResponseEntity.ok().body(responseAddProductToProductService);
+    }
 
-        Product response = this.productServiceClient.getStockByProductId(productId);
-        System.out.println(response.getId());
-        System.out.println(response.getName());
-        System.out.println(response.getStock());
+    @GetMapping("Get")
+    public ResponseEntity<ResponseGetProductFromProductService> testfeign2(@RequestParam int id) {
+        RequestGetProductFromProductServiceById requestGetProductFromProductServiceById = new RequestGetProductFromProductServiceById();
+        requestGetProductFromProductServiceById.setId(id);
+        ResponseGetProductFromProductService responseGetProductFromProductService = this.productCallerService.getProduct(requestGetProductFromProductServiceById);
+        return ResponseEntity.ok().body(responseGetProductFromProductService);
     }
 }

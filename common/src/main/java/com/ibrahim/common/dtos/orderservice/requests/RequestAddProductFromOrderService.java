@@ -1,4 +1,4 @@
-package com.ibrahim.productservice.dtos.requests;
+package com.ibrahim.common.dtos.orderservice.requests;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,8 +7,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
-public class RequestGetProductByName {
+@NoArgsConstructor
+public class RequestAddProductFromOrderService {
     private String name;
+    private int stock;
 }

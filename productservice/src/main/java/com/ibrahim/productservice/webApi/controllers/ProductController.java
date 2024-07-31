@@ -1,15 +1,12 @@
 package com.ibrahim.productservice.webApi.controllers;
 
+
 import com.ibrahim.productservice.business.abstracts.ProductService;
-import com.ibrahim.productservice.dtos.requests.RequestAddProduct;
-import com.ibrahim.productservice.dtos.requests.RequestGetProductById;
-import com.ibrahim.productservice.dtos.requests.RequestGetProductByName;
-import com.ibrahim.productservice.dtos.requests.RequestUpdateProduct;
-import com.ibrahim.productservice.dtos.responses.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import com.ibrahim.common.dtos.productservice.requests.*;
+import com.ibrahim.common.dtos.productservice.responses.*;
 import java.util.List;
 
 @RestController

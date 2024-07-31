@@ -1,4 +1,4 @@
-package com.ibrahim.productservice.dtos.requests;
+package com.ibrahim.common.dtos.productservice.requests;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +9,8 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class RequestAddProduct {
+public class RequestUpdateProduct {
+    private int id;
     private String name;
     private int stock;
 }
