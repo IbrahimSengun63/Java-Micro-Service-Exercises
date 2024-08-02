@@ -2,11 +2,8 @@ package com.ibrahim.productservice.business.concretes;
 
 import com.ibrahim.productservice.business.abstracts.ProductService;
 import com.ibrahim.productservice.dataAccess.ProductRepository;
-import com.ibrahim.productservice.dtos.requests.RequestAddProduct;
-import com.ibrahim.productservice.dtos.requests.RequestGetProductById;
-import com.ibrahim.productservice.dtos.requests.RequestGetProductByName;
-import com.ibrahim.productservice.dtos.requests.RequestUpdateProduct;
-import com.ibrahim.productservice.dtos.responses.*;
+import com.ibrahim.common.dtos.productservice.requests.*;
+import com.ibrahim.common.dtos.productservice.responses.*;
 import com.ibrahim.productservice.entities.Product;
 import com.ibrahim.productservice.mappers.ProductMapper;
 import lombok.RequiredArgsConstructor;

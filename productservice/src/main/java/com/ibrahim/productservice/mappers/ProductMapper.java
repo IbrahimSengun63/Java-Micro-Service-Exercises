@@ -1,15 +1,14 @@
 package com.ibrahim.productservice.mappers;
 
-import com.ibrahim.productservice.dtos.requests.RequestAddProduct;
-import com.ibrahim.productservice.dtos.requests.RequestGetProductById;
-import com.ibrahim.productservice.dtos.requests.RequestGetProductByName;
-import com.ibrahim.productservice.dtos.requests.RequestUpdateProduct;
-import com.ibrahim.productservice.dtos.responses.*;
+
+
+import com.ibrahim.common.dtos.productservice.requests.*;
+import com.ibrahim.common.dtos.productservice.responses.*;
 import com.ibrahim.productservice.entities.Product;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
-import org.springframework.stereotype.Service;
+
 
 import java.util.List;
 

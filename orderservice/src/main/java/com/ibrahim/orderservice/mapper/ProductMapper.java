@@ -1,7 +1,10 @@
 package com.ibrahim.orderservice.mapper;
 
-import com.ibrahim.orderservice.dtos.requests.RequestGetProductById;
-import com.ibrahim.orderservice.dtos.responses.ResponseGetProduct;
+
+import com.ibrahim.common.dtos.orderservice.requests.*;
+import com.ibrahim.common.dtos.orderservice.responses.*;
+import com.ibrahim.common.dtos.productservice.requests.*;
+import com.ibrahim.common.dtos.productservice.responses.*;
 import com.ibrahim.orderservice.entities.Product;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
@@ -10,6 +13,16 @@ import org.mapstruct.factory.Mappers;
 public interface ProductMapper {
     ProductMapper INSTANCE = Mappers.getMapper(ProductMapper.class);
 
-    Product requestGetProductByIdToProduct(RequestGetProductById requestGetProductById);
-    ResponseGetProduct productToResponseGetProduct(Product product);
+    RequestGetProductById requestGetProductFromProductServiceByIdProductToRequestGetProductById(RequestGetProductFromProductServiceById requestGetProductFromProductServiceById);
+    ResponseGetProductFromProductService responseGetProductByIdToResponseGetProductFromProductService(ResponseGetProductById responseGetProductById);
+
+    Product responseGetProductFromProductServiceToProduct(ResponseGetProductFromProductService responseGetProductFromProductService);
+    ResponseGetProductFromProductService productToResponseGetProductFromProductService(Product product);
+
+
+    RequestAddProduct requestAddProductFromOrderServiceToRequestAddProduct(RequestAddProductFromOrderService requestAddProductFromOrderService);
+    ResponseAddProductToProductService responseAddProductToresponseAddProductToProductService(ResponseAddProduct responseAddProduct);
+
+    Product responseAddProductToProductServiceToProduct(ResponseAddProductToProductService responseAddProductToProductService);
+    ResponseAddProductToProductService productToResponseAddProductToProductService(Product product);
 }
