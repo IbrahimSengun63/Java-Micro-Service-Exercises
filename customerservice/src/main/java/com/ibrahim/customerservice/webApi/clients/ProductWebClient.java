@@ -1,10 +1,12 @@
 package com.ibrahim.customerservice.webApi.clients;
 
 import com.ibrahim.common.dtos.productservice.responses.ResponseGetAllProduct;
+import com.ibrahim.common.dtos.productservice.responses.ResponseGetProductById;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 
@@ -26,6 +28,14 @@ public class ProductWebClient implements ProductClient {
                 .retrieve()
                 .bodyToMono(new ParameterizedTypeReference<List<ResponseGetAllProduct>>() {})
                 .flatMapMany(Flux::fromIterable); // Convert the List to Flux
+    }
+
+    @Override
+    public Mono<ResponseGetProductById> getProductById(int id) {
+        return client.get()
+                .uri("/GetProductById/{id}",id)
+                .retrieve()
+                .bodyToMono(ResponseGetProductById.class);
     }
 }
 
