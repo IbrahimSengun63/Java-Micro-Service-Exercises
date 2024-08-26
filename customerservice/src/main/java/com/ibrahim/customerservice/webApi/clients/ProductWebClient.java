@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import reactor.util.retry.Retry;
 
 import java.time.Duration;
 import java.util.List;
@@ -38,7 +39,9 @@ public class ProductWebClient implements ProductClient {
                 .then(client.get()
                         .uri("/GetProductById/{id}", id)
                         .retrieve()
-                        .bodyToMono(ResponseGetProductById.class));
+                        .bodyToMono(ResponseGetProductById.class)
+                        .retryWhen(Retry.backoff(3, Duration.ofSeconds(2)).jitter(0.75))
+                );
     }
 }
 
