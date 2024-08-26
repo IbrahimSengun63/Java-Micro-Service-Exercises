@@ -9,6 +9,8 @@ import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.time.Duration;
+
 @Component
 @RequiredArgsConstructor
 public class ProductCaller implements ProductCallerService{
@@ -24,9 +26,11 @@ public class ProductCaller implements ProductCallerService{
 
     @Override
     public Mono<ResponseGetProductFromProductService> getProductById(int id) {
-        return productClient.getProductById(id)
-                .map(productMapper::responseToResponseGetProductFromProductService);
+        return Mono.defer(() -> productClient.getProductById(id)
+                        .map(productMapper::responseToResponseGetProductFromProductService))
+                .delaySubscription(Duration.ofMillis(500));  // Add a 500 ms delay before processing
     }
+
 
 }
 

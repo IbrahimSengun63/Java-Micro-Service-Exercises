@@ -8,6 +8,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.time.Duration;
 import java.util.List;
 
 @Component
@@ -26,16 +27,18 @@ public class ProductWebClient implements ProductClient {
         return client.get()
                 .uri("/GetAll")
                 .retrieve()
-                .bodyToMono(new ParameterizedTypeReference<List<ResponseGetAllProduct>>() {})
+                .bodyToMono(new ParameterizedTypeReference<List<ResponseGetAllProduct>>() {
+                })
                 .flatMapMany(Flux::fromIterable); // Convert the List to Flux
     }
 
     @Override
     public Mono<ResponseGetProductById> getProductById(int id) {
-        return client.get()
-                .uri("/GetProductById/{id}",id)
-                .retrieve()
-                .bodyToMono(ResponseGetProductById.class);
+        return Mono.delay(Duration.ofMillis(500))  // Delay of 500 milliseconds
+                .then(client.get()
+                        .uri("/GetProductById/{id}", id)
+                        .retrieve()
+                        .bodyToMono(ResponseGetProductById.class));
     }
 }
 
