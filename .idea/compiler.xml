@@ -20,7 +20,7 @@
         </processorPath>
         <module name="common" />
       </profile>
-      <profile name="Annotation profile for productservice" enabled="true">
+      <profile name="Annotation profile for customerservice" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -31,8 +31,8 @@
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok-mapstruct-binding/0.2.0/lombok-mapstruct-binding-0.2.0.jar" />
         </processorPath>
         <module name="customerservice" />
-        <module name="productservice" />
         <module name="orderservice" />
+        <module name="productservice" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
