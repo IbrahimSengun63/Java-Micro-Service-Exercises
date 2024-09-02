@@ -99,6 +99,22 @@ services:
       - microservices
 
 
+  user-service:
+    build: ./userservice
+    ports:
+      - "8084:8084"
+    restart: on-failure
+    depends_on:
+      - config-server
+      - discovery-server
+      - gateway-server
+    environment:
+      - SPRING_CLOUD_CONFIG_PROFILE=docker
+      - CONFIGURL=http://config-server:8079
+    networks:
+      - microservices
+
+
 volumes:
   postgresql-volume:
     name: postgresql-microservices-exercises
