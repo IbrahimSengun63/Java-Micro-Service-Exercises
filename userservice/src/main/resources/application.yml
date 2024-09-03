@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: userservice
+  cloud:
+    config:
+      profile: local
+  config:
+    import: "optional:configserver:${configUrl}/"
+
+
+configUrl: http://localhost:8079
