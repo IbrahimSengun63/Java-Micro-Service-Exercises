@@ -4,7 +4,9 @@ import com.ibrahim.common.dtos.userservice.requests.RequestAddUser;
 import com.ibrahim.common.dtos.userservice.responses.ResponseAddUser;
 import com.ibrahim.common.dtos.userservice.responses.ResponseGetUser;
 import com.ibrahim.userservice.business.abstracts.UserService;
+import com.ibrahim.userservice.entities.User;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,7 +24,7 @@ public class UserController {
 
     @GetMapping("/get/{id}")
     public ResponseEntity<ResponseGetUser> getUser(@PathVariable Long id) {
-        ResponseGetUser response = userService.getUser(id);
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(userService.getUser(id));
     }
+
 }

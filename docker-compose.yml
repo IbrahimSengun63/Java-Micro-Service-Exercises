@@ -114,7 +114,7 @@ services:
     networks:
       - microservices
 
-
+#docker run --name redis -p 6379:6379 -v redis-data:/data -d redis
 volumes:
   postgresql-volume:
     name: postgresql-microservices-exercises
