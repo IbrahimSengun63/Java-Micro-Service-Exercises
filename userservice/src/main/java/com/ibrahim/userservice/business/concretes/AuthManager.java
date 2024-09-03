@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -21,14 +22,17 @@ public class AuthManager implements AuthService {
     private final JwtUtils jwtUtils;
     private final AuthenticationManager authenticationManager;
     private final AuthMapper authMapper;
+    private final PasswordEncoder passwordEncoder;
     private final UserService userService;
 
     @Override
     public ResponseRegisterUser registerUser(RequestRegisterUser requestRegisterUser) {
         User user = authMapper.requestRegisterUserToUser(requestRegisterUser);
+        user.setPassword(passwordEncoder.encode(user.getPassword())); // Encode password before saving
         User savedUser = userService.saveUser(user);
         return authMapper.userToResponseRegisterUser(savedUser);
     }
+
 
     @Override
     public ResponseLoginUser loginUser(RequestLoginUser requestLoginUser) {

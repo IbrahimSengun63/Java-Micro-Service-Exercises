@@ -13,7 +13,7 @@ import java.util.Date;
 @Component
 public class JwtUtils {
 
-    private final long EXPIRATION = 60000;
+    private final long EXPIRATION = 600000;
 
     private final String SECRET_KEY="9W6ch2K/rgdYy88op9r+eUu+88BOifC1etCkUtXa3sQQ+p9/oCc/7Pkra0NLzKeAwg91u7+Guhms2sm75oUYNXNFHWvkExFTlM3hzOrRQukzyOwsP0Hcr7kC2Z6c7w9blaWblOyLEaVr7l1H9ib/Ig5t+3xOB4avL4B/0c/PWua1ZB0ykbz9J+Pz+twKYWk4VCfW3AoCZTlCgbOBaw979E14iV91gY0bju7Hti+3wctW1f9JzFi+V7oR0w632Zg9RAve/plSD/KAQ3OY5aserGmXfXzb8hvb2qBusvl76L3LY5p/D2FxZEUzM3t8SnBjDxxJZOS3J+JaqN3pW9YSqKpr51MjAY+6r5oPYonEt60=";
 
