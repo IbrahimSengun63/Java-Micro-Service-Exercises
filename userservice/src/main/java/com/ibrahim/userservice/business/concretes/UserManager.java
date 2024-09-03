@@ -1,21 +1,13 @@
 package com.ibrahim.userservice.business.concretes;
 
 import com.ibrahim.common.dtos.userservice.requests.RequestAddUser;
-import com.ibrahim.common.dtos.userservice.requests.RequestLoginUser;
-import com.ibrahim.common.dtos.userservice.requests.RequestRegisterUser;
 import com.ibrahim.common.dtos.userservice.responses.ResponseAddUser;
 import com.ibrahim.common.dtos.userservice.responses.ResponseGetUser;
-import com.ibrahim.common.dtos.userservice.responses.ResponseLoginUser;
-import com.ibrahim.common.dtos.userservice.responses.ResponseRegisterUser;
 import com.ibrahim.userservice.business.abstracts.UserService;
-import com.ibrahim.userservice.config.JwtUtils;
 import com.ibrahim.userservice.dataAccess.UserRepository;
 import com.ibrahim.userservice.entities.User;
 import com.ibrahim.userservice.mappers.UserMapper;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;

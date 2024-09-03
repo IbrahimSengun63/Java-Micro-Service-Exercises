@@ -29,11 +29,13 @@ public class SecurityConfiguration {
             "/api/v1/user-service/add",
             "/api/v1/user-service/get/**",
             "/api/v1/user-service/auth/token",
+            "/api/v1/user-service/session/**",
             "/swagger-ui/**",
             "/v2/api-docs",
             "/v3/api-docs",
             "/v3/api-docs/**",
     };
+
 
 
     @Bean

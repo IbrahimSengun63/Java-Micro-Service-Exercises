@@ -6,7 +6,7 @@ import com.ibrahim.common.dtos.userservice.responses.ResponseLoginUser;
 import com.ibrahim.common.dtos.userservice.responses.ResponseRegisterUser;
 import com.ibrahim.userservice.business.abstracts.AuthService;
 import com.ibrahim.userservice.business.abstracts.UserService;
-import com.ibrahim.userservice.config.JwtUtils;
+import com.ibrahim.userservice.utils.JwtUtils;
 import com.ibrahim.userservice.entities.User;
 import com.ibrahim.userservice.mappers.AuthMapper;
 import lombok.RequiredArgsConstructor;

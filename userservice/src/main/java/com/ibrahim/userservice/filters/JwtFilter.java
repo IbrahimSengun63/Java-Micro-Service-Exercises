@@ -1,7 +1,7 @@
 package com.ibrahim.userservice.filters;
 
 import com.ibrahim.userservice.business.abstracts.UserService;
-import com.ibrahim.userservice.config.JwtUtils;
+import com.ibrahim.userservice.utils.JwtUtils;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -19,6 +19,7 @@ import java.io.IOException;
 @Component
 @RequiredArgsConstructor
 public class JwtFilter extends OncePerRequestFilter {
+
     private final JwtUtils jwtUtils;
     private final UserService userService;
 
@@ -32,15 +33,13 @@ public class JwtFilter extends OncePerRequestFilter {
 
             if (jwtUtils.validateToken(jwt)) {
                 String username = jwtUtils.extractUsername(jwt);
-                UserDetails userDetails = userService.loadUserByUsername(username);  // Load the user details
-                UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userDetails, null);
-                token.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                SecurityContextHolder.getContext().setAuthentication(token);
+                UserDetails userDetails = userService.loadUserByUsername(username);
+                UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+                authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                SecurityContextHolder.getContext().setAuthentication(authentication);
             }
-
         }
 
         filterChain.doFilter(request, response);
-
     }
 }
