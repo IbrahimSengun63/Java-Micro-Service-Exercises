@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: notificationservice
+  cloud:
+    config:
+      profile: local
+  config:
+    import: "optional:configserver:${configUrl}/"
+
+configUrl: http://localhost:8079
