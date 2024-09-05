@@ -12,6 +12,18 @@ services:
     networks:
       - microservices
 
+  mongo:
+    image: mongo
+    container_name: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+      MONGO_INITDB_DATABASE: notification
+    volumes:
+      - /path/to/data:/data/db
+    ports:
+      - "27017:27017"
+
 
   config-server:
     build: ./configserver
